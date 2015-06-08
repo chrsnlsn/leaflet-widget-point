@@ -1,6 +1,6 @@
 # Leaflet Widget Point
 
-A [Geofield] widget that provides a [Leaflet] map widget with the
+A [Geofield] 1x widget that provides a [Leaflet] map widget with the
 [Leaflet.widget_point] plugin for capturing a point.
 
 ## Features:
