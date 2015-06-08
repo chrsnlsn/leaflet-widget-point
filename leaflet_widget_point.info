@@ -1,11 +1,11 @@
 name = Leaflet Widget Point for Geofield
 description = "A Geofield widget that provides a Leaflet map to capture a point."
 core = 7.x
-dependencies[] = geofield (1.x)
+dependencies[] = geofield (>=1)
 dependencies[] = libraries (2.x)
 dependencies[] = leaflet
 
-version = "7.x-1.0-alpha"
+version = "7.x-2.0-alpha"
 core = "7.x"
 project = "leaflet_widget_point"
 

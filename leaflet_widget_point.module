@@ -88,12 +88,6 @@ function leaflet_widget_point_field_widget_settings_form($field, $instance) {
  */
 function leaflet_widget_point_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
 
-$location = ip_geoloc_get_visitor_location();
-  if (isset($location['latitude'])) {
-    $instance['widget']['settings']['map']['center']['lat'] = $location['latitude'];
-    $instance['widget']['settings']['map']['center']['lng'] = $location['longitude'];
-    $instance['widget']['settings']['map']['zoom'] = 14;
-  }
     $instance['widget']['settings']['map']['scrollWheelZoom'] = FALSE;
 
     $settings = $instance['widget']['settings'];
@@ -252,8 +246,11 @@ function leaflet_widget_point_widget_validate($element, &$form_state) {
 function leaflet_widget_point_process_geojson($geojson) {
   $geom = geoPHP::load($geojson, 'json');
   $type = $geom->geometryType();
-  $result = array('wkt' => $geom->out('wkt'));
-  return $result;
+  $result = array(
+    'geom' => $geom->out('wkt'),
+    'input_format' => 'wkt',
+  );
+  return geofield_compute_values($result);
 }
 
 /**
@@ -265,7 +262,7 @@ function leaflet_widget_point_library() {
   $libraries = array();
 
   $libraries['widget_point'] = array(
-    'title' => 'Widget behavior',
+    'title' => 'Widget Point behavior',
     'version' => '1.x',
     'js' => array(
       "$path/js/widget_point.js" => array(),
