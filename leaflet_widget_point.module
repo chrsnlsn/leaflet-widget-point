@@ -220,8 +220,8 @@ function leaflet_widget_point_widget_prepare_items($items) {
   $features = array();
   foreach ($items as $item) {
 
-    if (isset($item['wkt'])) {
-      $features[] = leaflet_widget_point_geojson_feature($item['wkt']);
+    if (isset($item['geom'])) {
+      $features[] = leaflet_widget_point_geojson_feature($item['geom']);
     }
   }
   return leaflet_widget_point_geojson_feature_collection($features);
